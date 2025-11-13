@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mappa Sonora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Popup introduttivo -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h2>Benvenutə nella Mappa Sonora</h2>
+      <p>
+        Questa mappa interattiva fa parte del progetto “Mappa Sonora”.
+        Esplorando i luoghi troverai suoni, storie e suggestioni raccolte sul territorio.  
+        <br><br>
+        (Puoi aggiungere qui altro testo, spiegazioni o istruzioni per l’ascolto.)
+      </p>
+      <button id="closePopup">Entra nella mappa</button>
+    </div>
+  </div>
+
+  <!-- Mappa full screen -->
+  <iframe
+    src="https://umap.openstreetmap.fr/it/map/mappa-sonora_1302604"
+    frameborder="0"
+    allowfullscreen
+    class="map-frame">
+  </iframe>
+
+  <script src="script.js"></script>
+</body>
+</html>
