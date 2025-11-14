@@ -83,41 +83,44 @@ button:hover {
   background: rgba(255, 255, 255, 0.377);
 }
 
-/* === MENU CENTRALE GLASS === */
+/* === NAVBAR SOTTILE CON VERO GLASS === */
 .menu {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 28px;
+  gap: 20px;
 
-  /* Glass identico al popup */
+  /* Glass effect forte e visibile */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(35px) saturate(180%);
   -webkit-backdrop-filter: blur(35px) saturate(180%);
 
-  padding: 16px 42px;
-  border-radius: 28px;
+  padding: 8px 30px; /* meno spazio verticale */
+  border-radius: 25px;
+
   border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+
   z-index: 20;
 }
 
 /* Link menu */
 .menu a {
-  color: #070707cc; /* chiaro ma leggibile */
+  color: #ddddddcc; /* chiaro ma leggibile */
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 1rem;
   transition: all 0.25s ease;
   position: relative;
+  padding: 4px 6px; /* spazio interno piccolo per link */
 }
 
-/* Hover delicato ma leggibile */
+/* Hover delicato e moderno */
 .menu a:hover {
-  color: #c2c2c2cc; /* leggero incremento di luminosità */
+  color: #eeeeeecc; /* leggermente più chiaro */
   text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.4),
-    0 0 6px rgba(255, 255, 255, 0.25);
+    0 0 2px rgba(255, 255, 255, 0.4),
+    0 0 4px rgba(255, 255, 255, 0.25);
 }
