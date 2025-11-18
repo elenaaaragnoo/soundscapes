@@ -5,15 +5,17 @@
   box-sizing: border-box;
 }
 
+/* Importa il font Roboto da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #000;
+  font-family: 'Roboto', sans-serif; /* Nuovo font */
+  background: #000; /* Sfondo di default scuro */
 }
 
-/* === MAPPA FULLSCREEN === */
+/* === MAPPA FULLSCREEN (per index.html) === */
 .map-frame {
   position: absolute;
   top: 0;
@@ -93,147 +95,167 @@ button:hover {
   gap: 20px;
 
   /* Glass effect forte e visibile */
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(35px) saturate(180%);
-  -webkit-backdrop-filter: blur(35px) saturate(180%);
+  background: rgba(255, 255, 255, 0.5); /* Più opaco per sfondo chiaro */
+  backdrop-filter: blur(15px) saturate(180%); /* Meno blur per uno sfondo già chiaro */
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
 
-  padding: 8px 30px; /* meno spazio verticale */
+  padding: 8px 30px;
   border-radius: 25px;
 
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.7); /* Bordo più visibile */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombra più leggera */
 
   z-index: 20;
 }
 
 /* Link menu */
 .menu a {
-  color: #000000cc; /* chiaro ma leggibile */
+  color: #000000; /* Testo nero per maggiore contrasto */
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.95rem; /* Leggermente più piccolo */
   transition: all 0.25s ease;
   position: relative;
-  padding: 4px 6px; /* spazio interno piccolo per link */
+  padding: 4px 6px;
 }
 
 /* Hover delicato e moderno */
 .menu a:hover {
-  color: #b9b9b9cc; /* leggermente più chiaro */
-  text-shadow:
-    0 0 2px rgba(255, 255, 255, 0.4),
-    0 0 4px rgba(255, 255, 255, 0.25);
+  color: #333333; /* Colore scuro leggermente diverso all'hover */
+  text-shadow: none; /* Rimuovi la text-shadow che era per sfondi scuri */
 }
+
+/* Evidenzia la pagina corrente nel menu */
+.menu a.active {
+  color: #1a73e8; /* Un blu più moderno per l'attivo */
+  font-weight: 700;
+  border-bottom: 2px solid #1a73e8; /* Sottolineatura colorata */
+}
+
 /* === STILE PER LE PAGINE DI CONTENUTO (Approfondimento, Ricerca, Contatti) === */
 
 /* Permette lo scroll nelle pagine di testo */
 body.scrollable {
-  overflow-y: auto; /* Abilita lo scorrimento verticale */
-  /* Sfondo per le pagine senza mappa: 
-     Puoi sostituire l'URL con un'immagine, o usare un gradiente come qui sotto */
-  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-  /* Se hai un'immagine di sfondo (es. screenshot della mappa sfocata):
-  background: url('tua-immagine-sfondo.jpg') no-repeat center center fixed; 
-  background-size: cover; */
+  overflow-y: auto; 
+  /* NUOVO SFONDO: la tua immagine della mappa */
+  background: url('map-background.png') no-repeat center center fixed; 
+  background-size: cover; /* Assicura che l'immagine copra tutto lo sfondo */
+  color: #333; /* Colore testo generale scuro per lo sfondo chiaro */
 }
 
 /* Contenitore principale del testo (Stile Glass Coerente) */
 .page-container {
   width: 90%;
-  max-width: 800px; /* Larghezza massima per leggibilità */
-  margin: 120px auto 60px auto; /* Spazio sopra per il menu fisso */
-  padding: 50px;
+  max-width: 800px;
+  margin: 120px auto 60px auto;
+  padding: 40px; /* Padding leggermente ridotto */
   
-  /* Riprendo il tuo stile .popup-content */
-  background: rgba(255, 255, 255, 0.15); /* Leggermente più scuro per contrasto testo */
-  border-radius: 25px;
-  color: #f0f0f0; /* Testo chiaro per leggibilità su sfondo scuro */
+  /* Stile Glass aggiornato per sfondo chiaro */
+  background: rgba(255, 255, 255, 0.8); /* Molto più chiaro e opaco */
+  border-radius: 20px; /* Bordi leggermente meno arrotondati */
+  color: #333; /* Colore testo scuro */
   
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  backdrop-filter: blur(10px) saturate(180%); /* Meno blur */
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
   
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.9); /* Bordo quasi bianco */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Ombra più leggera */
 }
 
 /* Tipografia per i contenuti */
 .page-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  font-weight: 300;
+  font-size: 2.2rem; /* Leggermente più piccolo */
+  margin-bottom: 25px;
+  font-weight: 700; /* Più grassetto */
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  color: #1a1a1a;
 }
 
 .page-container h2 {
-  font-size: 1.8rem;
-  margin-top: 40px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  padding-bottom: 10px;
+  font-size: 1.5rem; /* Più piccolo */
+  margin-top: 35px;
+  margin-bottom: 12px; /* Margine inferiore ridotto */
+  border-bottom: none; /* Rimosso il bordo */
+  padding-bottom: 0; /* Rimosso il padding inferiore */
+  font-weight: 500; /* Peso medio */
+  color: #222;
 }
 
 .page-container p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  color: #e0e0e0; /* Bianco sporco riposante per gli occhi */
+  font-size: 1rem; /* Leggermente più piccolo */
+  line-height: 1.7; /* Interlinea leggermente ridotta */
+  margin-bottom: 18px;
+  color: #333; /* Testo più scuro */
 }
 
 .page-container ul {
   margin-left: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  color: #333;
 }
 
 .page-container li {
-  margin-bottom: 10px;
-  line-height: 1.6;
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
 
 /* Link nel testo */
 .page-container a {
-  color: #fff;
+  color: #1a73e8; /* Blu per i link */
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
 
 .page-container a:hover {
-  color: #ccc;
+  color: #0d47a1; /* Blu più scuro all'hover */
 }
 
 /* === GALLERIA IMMAGINI AFFIANCATE === */
 .gallery-row {
-  display: flex;           /* Dispone gli elementi in riga */
-  gap: 20px;               /* Spazio tra le due foto */
-  margin: 30px 0;          /* Spazio sopra e sotto la galleria */
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+  justify-content: center; /* Centra le immagini */
 }
 
 .gallery-row img {
-  flex: 1;                 /* Le immagini si dividono lo spazio equamente */
-  width: 100%;             /* Si adattano alla larghezza */
-  max-width: 50%;          /* Assicura che siano larghe la metà */
-  object-fit: cover;       /* Ritaglia l'immagine se necessario per allinearle */
-  border-radius: 15px;     /* Arrotonda gli angoli */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombra leggera */
+  flex: 1;
+  width: 100%;
+  max-width: calc(50% - 10px); /* Mezzo spazio meno la metà del gap */
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Ombra più leggera */
 }
 
 /* Regola per cellulari: le immagini vanno una sotto l'altra */
 @media (max-width: 768px) {
   .gallery-row {
     flex-direction: column;
+    align-items: center; /* Centra le immagini verticalmente */
   }
   .gallery-row img {
-    max-width: 100%;
+    max-width: 90%; /* Lascia un po' di margine sui lati */
   }
 }
 
 /* === STILE SOUNDCLOUD === */
 iframe.soundcloud-player {
   width: 100%;
-  height: 166px; /* Altezza standard player SoundCloud */
+  height: 166px;
   border: none;
   border-radius: 15px;
   margin: 30px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Ombra più leggera */
+}
+
+/* Stile per le immagini all'interno del contenitore delle pagine */
+.page-container img {
+  max-width: 100%;
+  height: auto;    
+  display: block;  
+  margin: 30px auto; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombra più leggera */
 }
