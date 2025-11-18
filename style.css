@@ -147,7 +147,7 @@ body.scrollable::before {
   z-index: -1; /* Manda lo sfondo dietro a tutto il contenuto */
   
   /* Applica l'immagine (DEVE ESSERE mappa.jpg nella stessa cartella)*/
-  background-image: url('mappa.jpg'); 
+  background-image: url('map-background.png'); 
   background-repeat: no-repeat;
   background-size: cover; 
   background-position: center center; 
@@ -273,6 +273,7 @@ iframe.soundcloud-player {
   border-radius: 10px; 
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
 }
+
 
 
 
