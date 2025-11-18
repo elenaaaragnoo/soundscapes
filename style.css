@@ -149,8 +149,8 @@ body.scrollable::before {
   height: 100%;
   z-index: -1; /* Manda lo sfondo dietro a tutti gli altri elementi (body, menu, pannello testo) */
   
-  /* Applica l'immagine (Assicurati che 'mappa.jpg' sia il nome corretto) */
-  background-image: url('mappa.jpg'); 
+  /* Applica l'immagine*/
+  background-image: url('map-background.png'); 
   background-repeat: no-repeat;
   background-size: cover; 
   background-position: center center; 
@@ -284,6 +284,7 @@ iframe.soundcloud-player {
   border-radius: 10px; 
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombra più leggera */
 }
+
 
 
 
