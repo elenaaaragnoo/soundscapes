@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soundscapes - Ricerca</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body class="scrollable">
+
+  <nav class="menu">
+    <!-- Navbar identica alla pagina precedente -->
+    <a href="index.html">Home</a>
+    <a href="approfondimento.html">Approfondimento</a>
+    <a href="ricerca.html">Ricerca</a>
+    <a href="contatti.html">Contatti</a>
+  </nav>
+
+  <div class="page-container">
+    
+    <h1>Il Percorso di Ricerca</h1>
+    
+    <p>
+      Ciò che segue è il percorso di ricerca che ha accompagnato la mia esplorazione sonora.
+      Incontrare parole, gesti e intuizioni di chi, prima di me, aveva già ascoltato e pensato il paesaggio sonoro è stato come trovare tracce luminose lungo il cammino: indispensabili per non smarrirsi, per continuare a cercare.
+    </p>
+
+    <h2>Documento di Approfondimento</h2>
+
+    <p>
+      Di seguito puoi consultare il documento che raccoglie le principali riflessioni teoriche e le fonti d'ispirazione relative a questo progetto, dal concetto di *Soundscape* alla metodologia di registrazione.
+    </p>
+
+    <!-- 
+      === VISUALIZZATORE PDF (iframe) ===
+      L'iframe carica il PDF usando la funzionalità nativa del browser. 
+      NOTA: Assicurati che il file si chiami 'percorso_ricerca.pdf'
+    -->
+    <div class="pdf-viewer-container">
+      <iframe 
+        src="Ascoltando una Barriera di suoni.pdf#toolbar=0&navpanes=0" 
+        style="width:100%; height:700px;" 
+        frameborder="0"
+        title="Anteprima del documento di ricerca">
+      </iframe>
+    </div>
+
+    <!-- 
+      === LINK DI DOWNLOAD ===
+      'download' forza il browser a scaricare il file invece di aprirlo
+    -->
+    <p style="text-align: center; margin-top: 30px;">
+      <a 
+        href="Ascoltando una Barriera di suoni.pdf" 
+        download="Ascoltando una Barriera di suoni.pdf"
+        style="
+          display: inline-block; 
+          padding: 10px 20px; 
+          background-color: #4b61d1; 
+          color: white; 
+          text-decoration: none; 
+          border-radius: 8px;
+          font-weight: 500;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          transition: background-color 0.2s ease;
+        "
+      >
+        Scarica il PDF (percorso_ricerca.pdf)
+      </a>
+    </p>
+    
+  </div>
+
+</body>
+</html>
