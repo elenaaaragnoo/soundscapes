@@ -129,19 +129,40 @@ button:hover {
 
 
 /* === STILE PER LE PAGINE DI CONTENUTO (Approfondimento, Ricerca, Contatti) === */
-
 /* Permette lo scroll nelle pagine di testo */
 body.scrollable {
-  overflow-y: auto; 
-  /* NUOVO SFONDO: la tua immagine della mappa */
-  /* Usa 'background-image' per maggiore chiarezza sul percorso */
-  background-image: url('map-background.png'); 
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Mantiene lo sfondo fisso durante lo scorrimento */
-  background-size: cover; /* Assicura che l'immagine copra tutto lo sfondo */
-  background-position: center center; /* Centra l'immagine */
-  
+  /* Rimuoviamo qui lo sfondo e il colore di fallback, 
+     lasciando il corpo principale senza un background diretto. */
+  overflow-y: auto;
   color: #333; 
+  /* Lo sfondo viene applicato all'elemento fittizio sottostante */
+  background: black; /* Rende la banda nera meno evidente, ma verrà coperta */
+}
+
+/* Elemento fittizio (pseudo-elemento) per contenere lo sfondo e applicare il filtro */
+body.scrollable::before {
+  content: '';
+  position: fixed; /* Rende lo sfondo FISSO rispetto alla viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Manda lo sfondo dietro a tutti gli altri elementi (body, menu, pannello testo) */
+  
+  /* Applica l'immagine (Assicurati che 'mappa.jpg' sia il nome corretto) */
+  background-image: url('mappa.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center center; 
+  
+  /* FILTRO DI SFOCATURA (Leggero Blur) */
+  filter: blur(5px); /* Puoi aumentare o diminuire il valore (es. 3px o 7px) */
+  -webkit-filter: blur(5px);
+}
+
+/* Assicurati che il contenitore del testo abbia uno sfondo opaco (già fatto con rgba) */
+.page-container {
+  /* ... (Il resto delle tue regole .page-container rimangono le stesse) ... */
 }
 
 /* Contenitore principale del testo (Stile Glass Coerente) */
@@ -263,6 +284,7 @@ iframe.soundcloud-player {
   border-radius: 10px; 
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombra più leggera */
 }
+
 
 
 
