@@ -75,8 +75,19 @@
     </p>
     
   </div>
+<script>
+  const slider = document.getElementById('zoomSlider');
+  const wrapper = document.getElementById('pdfWrapper');
+
+  slider.addEventListener('input', () => {
+    const scale = slider.value / 100;
+    wrapper.style.transform = `scale(${scale})`;
+    wrapper.style.height = `${700 * scale}px`;
+  });
+</script>
 
 </body>
 
 </html>
+
 
