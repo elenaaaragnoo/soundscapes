@@ -35,8 +35,7 @@ body:not(.scrollable) {
 }
 
 /* =========================================================
-   POPUP INTRODUTTIVO
-   ========================================================= */
+   /* POPUP INTRODUTTIVO */
 .popup {
   position: fixed;
   inset: 0;
@@ -51,7 +50,7 @@ body:not(.scrollable) {
 .popup-content {
   background: rgba(255, 255, 255, 0.28);
   border-radius: 25px;
-  padding: 50px 70px;
+  padding: 60px 80px; /* + più aria interna */
   max-width: 750px;
   color: #111;
   text-align: center;
@@ -59,6 +58,24 @@ body:not(.scrollable) {
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
 }
+
+/* SPAZIATURA PIÙ ARIOSA SOLO NEL POPUP */
+.popup-content h2 {
+  margin-bottom: 40px; /* titolo → testo */
+  font-size: 2.2rem;   /* leggero boost stile Apple */
+  font-weight: 700;
+}
+
+.popup-content p {
+  margin-bottom: 22px; /* spazio tra paragrafi */
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.popup-content button {
+  margin-top: 35px;
+}
+
 
 button {
   margin-top: 35px;
@@ -241,6 +258,7 @@ body.scrollable::before {
   cursor: pointer;
   z-index: 10000;
 }
+
 
 
 
