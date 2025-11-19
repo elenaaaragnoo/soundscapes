@@ -35,7 +35,8 @@ body:not(.scrollable) {
 }
 
 /* =========================================================
-   /* POPUP INTRODUTTIVO */
+   POPUP INTRODUTTIVO
+   ========================================================= */
 .popup {
   position: fixed;
   inset: 0;
@@ -50,7 +51,7 @@ body:not(.scrollable) {
 .popup-content {
   background: rgba(255, 255, 255, 0.28);
   border-radius: 25px;
-  padding: 60px 80px; /* + più aria interna */
+  padding: 60px 80px; /* più aria interna */
   max-width: 750px;
   color: #111;
   text-align: center;
@@ -62,12 +63,12 @@ body:not(.scrollable) {
 /* SPAZIATURA PIÙ ARIOSA SOLO NEL POPUP */
 .popup-content h2 {
   margin-bottom: 40px; /* titolo → testo */
-  font-size: 2.2rem;   /* leggero boost stile Apple */
+  font-size: 2.2rem;   
   font-weight: 700;
 }
 
 .popup-content p {
-  margin-bottom: 22px; /* spazio tra paragrafi */
+  margin-bottom: 22px; 
   line-height: 1.7;
   font-size: 1.05rem;
 }
@@ -75,7 +76,6 @@ body:not(.scrollable) {
 .popup-content button {
   margin-top: 35px;
 }
-
 
 button {
   margin-top: 35px;
@@ -144,6 +144,7 @@ body.scrollable::before {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.9);
   overflow: visible !important;
+  text-align: justify; /* testo giustificato */
 }
 
 /* =========================================================
@@ -162,22 +163,23 @@ body.scrollable::before {
 }
 
 /* =========================================================
-   TITOLI STILE APPLE
+   TITOLI LEGGERI PER LE ALTRE PAGINE
    ========================================================= */
 .page-container h1 {
-  font-size: 2rem;    /* leggermente più piccolo */
-  font-weight: 600;   /* meno pesante */
+  font-size: 2rem;    /* più piccolo */
+  font-weight: 600;   /* più leggero */
   letter-spacing: -0.5px;
   text-align: center;
   margin-bottom: 30px;
 }
 
 .page-container h2 {
-  font-size: 1.3rem;  /* più piccolo */
-  font-weight: 500;   /* più leggero */
+  font-size: 1.3rem;  
+  font-weight: 500;   
   letter-spacing: -0.3px;
   margin-top: 30px;
   margin-bottom: 18px;
+  text-align: center; /* se vuoi titoli centrati */
 }
 
 /* =========================================================
@@ -258,9 +260,6 @@ body.scrollable::before {
   cursor: pointer;
   z-index: 10000;
 }
-
-
-
 
 
 
