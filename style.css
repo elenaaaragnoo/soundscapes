@@ -1,11 +1,15 @@
-/* === RESET DI BASE === */
+/* =========================================================
+   RESET DI BASE
+========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* === FONT INTER (STILE APPLE) === */
+/* =========================================================
+   FONT
+========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 html, body {
@@ -17,8 +21,8 @@ html, body {
 }
 
 /* =========================================================
-   HOME: MAPPA FULLSCREEN
-   ========================================================= */
+   HOME — MAPPA FULLSCREEN
+========================================================= */
 .map-frame {
   position: absolute;
   top: 0;
@@ -27,6 +31,10 @@ html, body {
   height: 100% !important;
   border: none;
   z-index: 1;
+
+  /* migliora qualità su mobile */
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 body:not(.scrollable) {
@@ -35,7 +43,7 @@ body:not(.scrollable) {
 
 /* =========================================================
    POPUP INTRODUTTIVO
-   ========================================================= */
+========================================================= */
 .popup {
   position: fixed;
   inset: 0;
@@ -88,9 +96,21 @@ body:not(.scrollable) {
   font-weight: 500;
 }
 
+/* MOBILE POPUP FIX */
+@media (max-width: 480px) {
+  .popup-content {
+    max-width: 90% !important;
+    padding: 30px 22px !important;
+    border-radius: 18px;
+  }
+  .popup-content p {
+    text-align: left !important; /* evita spaziature brutte su Android */
+  }
+}
+
 /* =========================================================
    NAVBAR
-   ========================================================= */
+========================================================= */
 .menu {
   position: fixed;
   top: 45px;
@@ -111,16 +131,15 @@ body:not(.scrollable) {
   font-weight: 500;
   font-size: 0.95rem;
   padding: 5px 8px;
-  position: relative;
   transition: all 0.25s ease;
 }
 
-/* Hover effetto */
+/* Hover */
 .menu a:hover {
   color: #4b61d1;
 }
 
-/* Pagina corrente evidenziata */
+/* Pagina attiva */
 .menu a.active {
   color: #4b61d1;
   font-weight: 700;
@@ -137,9 +156,25 @@ body:not(.scrollable) {
   border-radius: 1px;
 }
 
+/* NAVBAR MOBILE */
+@media (max-width: 480px) {
+  .menu {
+    padding: 8px 18px !important;
+    gap: 12px !important;
+    font-size: 0.75rem !important;
+    max-width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .menu a {
+    font-size: 0.82rem !important;
+  }
+}
+
 /* =========================================================
    PAGINE SCORRIBILI
-   ========================================================= */
+========================================================= */
 body.scrollable {
   overflow-y: auto;
   background: transparent;
@@ -158,10 +193,10 @@ body.scrollable::before {
 
 /* =========================================================
    PAGE CONTAINER
-   ========================================================= */
+========================================================= */
 .page-container {
   width: 90%;
-  max-width: 800px; /* default per approfondimento */
+  max-width: 800px;
   margin: 120px auto 60px auto;
   padding: 40px;
   background: rgba(255, 255, 255, 0.85);
@@ -173,8 +208,8 @@ body.scrollable::before {
 }
 
 /* =========================================================
-   TESTI — PARAGRAFI, H1, H2
-   ========================================================= */
+   TESTO — FIX ANDROID (niente ellissi, niente overflow)
+========================================================= */
 .page-container *,
 .page-container p,
 .page-container h1,
@@ -184,43 +219,49 @@ body.scrollable::before {
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: unset !important;
-  max-height: none !important;
 }
 
 /* =========================================================
-   TITOLI PRINCIPALI E SOTTOTITOLI
-   ========================================================= */
+   TITOLI
+========================================================= */
 .page-container h1 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  margin-bottom: 25px;
+  margin-bottom: 22px;
   text-align: center;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.4px;
 }
 
 .page-container h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   margin-top: 35px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   text-align: left;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
 }
 
 /* =========================================================
    PARAGRAFI
-   ========================================================= */
+========================================================= */
 .page-container p {
   font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 18px;
-  letter-spacing: 0;
-  word-spacing: 0;
+  line-height: 1.6;
+  margin-bottom: 17px;
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
+}
+
+/* MOBILE — evita giustificazione difettosa */
+@media (max-width: 480px) {
+  .page-container p {
+    text-align: left !important;
+  }
 }
 
 /* =========================================================
-   IMMAGINI E GALLERIE (angoli arrotondati, ombra, opacità)
-   ========================================================= */
+   IMMAGINI E GALLERIE
+========================================================= */
 .gallery-row {
   display: flex;
   flex-wrap: wrap;
@@ -231,17 +272,17 @@ body.scrollable::before {
 .gallery-row img,
 .page-container > img {
   width: calc(50% - 10px);
-  border-radius: 12px; /* arrotondate */
+  border-radius: 14px;
   object-fit: cover;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   opacity: 0.95;
-  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  transition: 0.2s ease;
 }
 
 .gallery-row img:hover,
 .page-container > img:hover {
   opacity: 1;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.22);
 }
 
 @media (max-width: 768px) {
@@ -253,7 +294,7 @@ body.scrollable::before {
 
 /* =========================================================
    SOUNDCLOUD PLAYER
-   ========================================================= */
+========================================================= */
 .soundcloud-player {
   width: 100% !important;
   height: 200px !important;
@@ -264,17 +305,38 @@ body.scrollable::before {
 
 /* =========================================================
    PDF VIEWER
-   ========================================================= */
+========================================================= */
 .pdf-viewer-container iframe {
   width: 100%;
-  max-width: 1050px; /* leggermente più largo */
+  max-width: 1050px;
   height: 700px;
-  border: none; /* spigoli netti */
-  display: block;
+  border: none;
 }
 
+@media (max-width: 480px) {
+  .pdf-viewer-container iframe {
+    height: 380px !important;
+  }
+}
 
-/* EMAIL - elegante, moderna, NON blu */
+/* FALLBACK PDF */
+.pdf-fallback {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.pdf-fallback a {
+  padding: 10px 18px;
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   CONTACT PAGE — EMAIL
+========================================================= */
 .email {
   font-size: 1.15rem;
   font-weight: 600;
@@ -282,6 +344,7 @@ body.scrollable::before {
   margin: 10px 0 35px 0;
   color: #111;
   letter-spacing: -0.2px;
+  transition: opacity 0.2s;
 }
 
 .email:hover {
@@ -289,7 +352,9 @@ body.scrollable::before {
   cursor: pointer;
 }
 
-/* SOCIAL ICONS MODERNE */
+/* =========================================================
+   SOCIAL ICONS
+========================================================= */
 .contact-icons {
   margin-top: 30px;
   display: flex;
@@ -302,24 +367,23 @@ body.scrollable::before {
   backdrop-filter: blur(10px) saturate(180%);
   padding: 14px;
   border-radius: 14px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  transition: all 0.25s ease;
   color: #111;
+  transition: all 0.25s ease;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 .contact-icons a:hover {
   transform: translateY(-3px);
-  background: rgba(255,255,255,0.8);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
   color: #4b61d1;
 }
 
 .contact-icons i {
   font-size: 1.35rem;
 }
-
