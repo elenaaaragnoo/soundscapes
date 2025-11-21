@@ -31,7 +31,6 @@ html, body {
   height: 100% !important;
   border: none;
   z-index: 1;
-  /* RIMOSSO image-rendering pixelated per evitare sgranatura */
 }
 
 body:not(.scrollable) {
@@ -66,13 +65,31 @@ body:not(.scrollable) {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
 }
 
-.popup-content h2 {
-  margin-bottom: 35px;
-  font-size: 1.9rem;
-  font-weight: 700;
+/* --- STILI TITOLO E SOTTOTITOLO --- */
+
+/* Titolo Principale: Soundscapes */
+.popup-title {
+  font-size: 2.6rem;       /* Dimensione grande */
+  font-weight: 800;        /* Extra Bold */
   text-align: center;
+  margin-bottom: 0px;      /* Nessuno spazio sotto */
+  line-height: 1.1;        /* Altezza riga compatta */
+  color: #000;             /* Nero pieno */
+  letter-spacing: -1px;
 }
 
+/* Sottotitolo: "Ascoltando..." */
+.popup-subtitle {
+  font-size: 1.25rem;      /* Più piccolo del titolo */
+  font-weight: 500;        /* Peso medio */
+  text-align: center;
+  margin-top: 5px;         /* Vicinissimo al titolo sopra */
+  margin-bottom: 35px;     /* Spazio verso il paragrafo */
+  color: #333;             /* Grigio scuro per gerarchia */
+  line-height: 1.3;
+}
+
+/* Paragrafo */
 .popup-content p {
   margin-bottom: 20px;
   line-height: 1.7;
@@ -81,6 +98,7 @@ body:not(.scrollable) {
   word-spacing: 0;
 }
 
+/* Bottone */
 .popup-content button {
   margin-top: 35px;
   display: block;
@@ -93,6 +111,11 @@ body:not(.scrollable) {
   background: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.popup-content button:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* MOBILE FIX POPUP */
@@ -104,9 +127,16 @@ body:not(.scrollable) {
     text-align: left !important;
   }
   
-  .popup-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+  /* Allineamento a sinistra su mobile per coerenza */
+  .popup-title {
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .popup-subtitle {
+    font-size: 1.1rem;
+    text-align: left;
+    margin-bottom: 25px;
   }
 
   .popup-content p {
@@ -148,7 +178,7 @@ body:not(.scrollable) {
   color: #4b61d1;
 }
 
-/* Pagina attiva (SENZA LINEA SOTTO) */
+/* Pagina attiva */
 .menu a.active {
   color: #4b61d1;
   font-weight: 700;
@@ -218,7 +248,7 @@ body.scrollable::before {
 }
 
 /* =========================================================
-   TESTO E CONTENUTI
+   TESTO E CONTENUTI INTERNI
 ========================================================= */
 .page-container *,
 .page-container p,
@@ -309,7 +339,7 @@ body.scrollable::before {
 }
 
 /* =========================================================
-   PDF VIEWER (Fix Mobile)
+   PDF VIEWER
 ========================================================= */
 .pdf-viewer-container {
   width: 100%;
