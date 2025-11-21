@@ -14,7 +14,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* --- MAPPA DI SFONDO --- */
+/* --- MAPPA DI SFONDO (BASE) --- */
 .map-frame {
   position: absolute;
   top: 0;
@@ -29,14 +29,14 @@ body:not(.scrollable) {
   overflow: hidden !important;
 }
 
-/* --- LOADING PAGE SPECIFIC --- */
-/* Questo overlay replica esattamente lo sfondo del popup */
+/* --- LOADING PAGE (INDEX) --- */
+/* Overlay che simula lo sfondo del popup */
 .glass-overlay {
   position: fixed;
   inset: 0;
-  backdrop-filter: blur(10px); /* Stessa sfocatura del popup */
-  background: rgba(255, 255, 255, 0.15); /* Stesso colore base del popup */
-  z-index: 5; /* Sopra la mappa */
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 5;
 }
 
 .loading-logo {
@@ -44,9 +44,9 @@ body:not(.scrollable) {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10; /* Sopra il vetro sfocato */
-  width: 600px; /* MOLTO PIÙ GRANDE */
-  max-width: 90%; /* Adattabile su mobile */
+  z-index: 10;
+  width: 600px; /* Logo Grande */
+  max-width: 90%;
   animation: breathe 3s infinite ease-in-out;
 }
 
@@ -54,7 +54,6 @@ body:not(.scrollable) {
   width: 100%;
   height: auto;
   display: block;
-  /* Ombra leggera per staccarlo */
   filter: drop-shadow(0 0 20px rgba(255,255,255,0.5)); 
 }
 
@@ -67,18 +66,16 @@ body:not(.scrollable) {
 .popup {
   position: fixed;
   inset: 0;
-  /* Questi valori devono coincidere con .glass-overlay per continuità */
-  backdrop-filter: blur(10px); 
+  backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 30;
   padding: 20px;
-  transition: opacity 0.8s ease, visibility 0.8s ease; /* Dissolvenza dolce */
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-/* Classe per nascondere il popup */
 .popup.hidden {
   opacity: 0;
   visibility: hidden;
@@ -86,7 +83,7 @@ body:not(.scrollable) {
 }
 
 .popup-content {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.28); /* Trasparenza Glass */
   border-radius: 25px;
   padding: 60px 80px;
   width: 100%;
@@ -142,7 +139,6 @@ body:not(.scrollable) {
   .popup-title {
     font-size: 1.8rem;
   }
-  /* Logo un po' più piccolo su mobile ma comunque grande */
   .loading-logo {
     width: 85%; 
   }
@@ -194,20 +190,23 @@ body:not(.scrollable) {
   }
 }
 
-/* --- ALTRE PAGINE (Style Container ecc) --- */
+/* --- PAGINE INTERNE (Approfondimento, Ricerca, Contatti) --- */
+
 body.scrollable {
   overflow-y: auto;
 }
 
+/* Sfondo sfocato per le pagine interne */
 body.scrollable::before {
   content: '';
   position: fixed;
   inset: 0;
+  /* Assicurati che questa immagine sia nella stessa cartella */
   background-image: url('map-background.png'); 
-  background-color: #e0e0e0; 
   background-size: cover;
   background-position: center;
-  filter: blur(5px);
+  /* Sfocatura sfondo */
+  filter: blur(8px); 
   z-index: -2;
 }
 
@@ -216,10 +215,14 @@ body.scrollable::before {
   max-width: 800px;
   margin: 140px auto 60px auto;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  
+  /* STILE GLASS (uguale al popup) */
+  background: rgba(255, 255, 255, 0.35); /* Più trasparente di prima */
+  backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+  
+  border-radius: 25px;
   text-align: left; 
 }
 
@@ -248,7 +251,12 @@ body.scrollable::before {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 17px;
-  text-align: left !important;
+  text-align: left !important; /* Default a sinistra */
+}
+
+/* Classe speciale per centrare testi specifici (Contatti) */
+.center-text {
+  text-align: center !important;
 }
 
 /* --- GALLERIA --- */
@@ -282,6 +290,15 @@ body.scrollable::before {
   }
 }
 
+/* --- SOUNDCLOUD PLAYER FIX --- */
+.soundcloud-player {
+  width: 100%;
+  height: 166px; /* Altezza fissa per evitare stretch */
+  border-radius: 12px;
+  margin-top: 25px;
+  display: block;
+}
+
 /* --- PDF VIEWER --- */
 .pdf-viewer-container iframe {
   width: 100%;
@@ -291,41 +308,15 @@ body.scrollable::before {
   border-radius: 10px;
 }
 
-@media (max-width: 768px) {
-  .pdf-viewer-container iframe {
-    display: none;
-  }
-  .mobile-pdf-alert {
-    display: block !important;
-  }
-}
-
-/* --- CONTATTI --- */
-.email {
-  font-size: 1.15rem;
-  font-weight: 600;
-  text-align: center !important; 
-  color: #111;
-}
-
-.contact-icons {
+/* Messaggio mobile nascosto di default su PC */
+.mobile-pdf-alert {
+  display: none;
+  text-align: center;
   margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 22px;
 }
 
-.contact-icons a {
-  background: rgba(255,255,255,0.55);
-  padding: 14px;
-  border-radius: 14px;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.25s;
-}
+.mobile-pdf-alert p {
+  text-align: center !important
 
 
 
