@@ -11,28 +11,12 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Inter', sans-serif;
-  /* Colore di fallback se l'immagine non carica */
-  background-color: #e0e0e0;
+  background-color: #f7f7f7;
   overflow-x: hidden;
 }
 
-/* --- STILI COMUNI GLASS --- */
-/* Definiamo qui l'effetto glass per riutilizzarlo */
-.glass-effect {
-  /* Sfondo bianco molto trasparente */
-  background: rgba(255, 255, 255, 0.25);
-  /* La magia della sfocatura posteriore e saturazione */
-  backdrop-filter: blur(25px) saturate(180%);
-  /* Bordo sottile semi-trasparente */
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  /* Ombra morbida */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  /* Arrotondamento angoli */
-  border-radius: 25px;
-}
-
-
 /* --- MAPPA DI SFONDO (HOME & INDEX) --- */
+/* Questa è la mappa interattiva (iframe) */
 .map-frame {
   position: absolute;
   top: 0;
@@ -51,7 +35,6 @@ body:not(.scrollable) {
 .glass-overlay {
   position: fixed;
   inset: 0;
-  /* Deve matchare il background base del popup */
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.15);
   z-index: 5;
@@ -101,14 +84,11 @@ body:not(.scrollable) {
 }
 
 .popup-content {
-  /* Applica lo stile glass definito sopra */
-  /* Eredita le proprietà di .glass-effect */
   background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
-
   padding: 60px 80px;
   width: 100%;
   max-width: 750px;
@@ -212,32 +192,31 @@ body:not(.scrollable) {
   }
 }
 
-/* --- PAGINE INTERNE (Approfondimento, Ricerca, Contatti) --- */
+/* --- PAGINE INTERNE (SFONDO FISSO) --- */
 
-/* Qui impostiamo lo sfondo FISSO e GIA' SFOCATO */
 body.scrollable {
   overflow-y: auto;
-  /* IMPORTANTE: Assicurati di avere 'sfondo-sfocato.jpg' nella cartella */
+}
+
+/* Metodo ::before per lo sfondo sfocato fisso */
+body.scrollable::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  /* Assicurati che l'immagine 'sfondo-sfocato.jpg' sia nella cartella */
   background-image: url('sfondo-sfocato.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Rende lo sfondo immobile quando scorri */
-  background-repeat: no-repeat;
+  z-index: -2;
 }
-
-/* Rimuoviamo il vecchio metodo con ::before che non funzionava bene */
-body.scrollable::before {
-    display: none;
-}
-
 
 .page-container {
   width: 90%;
   max-width: 800px;
   margin: 140px auto 60px auto;
-  padding: 50px; /* Un po' più di spazio interno */
-
-  /* STILE GLASS UNIFICATO (Identico al popup) */
+  padding: 50px;
+  
+  /* GLASS EFFECT */
   background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -259,7 +238,6 @@ body.scrollable::before {
   font-weight: 800;
   text-align: center;
   margin-bottom: 30px;
-  color: #111;
 }
 
 .page-container h2 {
@@ -268,23 +246,19 @@ body.scrollable::before {
   text-align: left;
   margin-top: 40px;
   margin-bottom: 20px;
-  color: #111;
 }
 
 .page-container p {
   font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 20px;
-  color: #222;
-  text-align: left; /* Default */
+  text-align: left;
 }
 
-/* --- CLASSI DI UTILITÀ --- */
-/* Usa questa classe nell'HTML per centrare i testi specifici */
+/* UTILITY PER CENTRARE */
 .text-center {
   text-align: center !important;
 }
-
 
 /* --- GALLERIA --- */
 .gallery-row {
@@ -297,16 +271,15 @@ body.scrollable::before {
 .gallery-row img,
 .page-container > img {
   width: calc(50% - 10px);
-  border-radius: 16px; /* Arrotondamento leggermente maggiore */
+  border-radius: 16px;
   object-fit: cover;
-  /* Rimosso opacity per un look più pulito */
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transizione più fluida */
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .gallery-row img:hover,
 .page-container > img:hover {
-  transform: translateY(-5px); /* Leggero sollevamento */
+  transform: translateY(-5px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.18);
 }
 
@@ -317,7 +290,7 @@ body.scrollable::before {
   }
 }
 
-/* --- SOUNDCLOUD PLAYER FIX --- */
+/* --- SOUNDCLOUD PLAYER --- */
 .soundcloud-player {
   width: 100%;
   height: 166px;
@@ -362,7 +335,7 @@ body.scrollable::before {
   font-size: 1.4rem;
   font-weight: 700;
   text-align: center !important;
-  color: #4b61d1; /* Colore accento */
+  color: #4b61d1;
   margin-top: 15px;
   letter-spacing: -0.5px;
 }
@@ -371,39 +344,37 @@ body.scrollable::before {
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  gap: 30px; /* Più spazio tra le icone */
+  gap: 20px; /* Gap ridotto per icone più piccole */
 }
 
-/* Stile delle nuove icone social */
+/* STILE ICONE SOCIAL AGGIORNATO */
 .contact-icons a {
-  /* Niente sfondo pieno iniziale */
-  background: transparent;
-  /* Bordo sottile ed elegante */
-  border: 2px solid rgba(255,255,255,0.5);
-  color: #222; /* Colore icona scuro */
-
-  border-radius: 20px; /* Quadrato arrotondato */
-  width: 70px; /* Grandi */
-  height: 70px;
-
+  background: rgba(255,255,255,0.4); /* Sfondo leggerissimo */
+  border: 1px solid rgba(255,255,255,0.6); /* Bordo sottile */
+  
+  border-radius: 15px; 
+  /* Dimensioni RIDOTTE */
+  width: 48px; 
+  height: 48px;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Transizione fluida e "rimbalzante" */
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-  font-size: 2rem; /* Icona interna grande */
+  
+  text-decoration: none !important; /* Rimuove sottolineatura forzatamente */
+  color: #333; /* Colore scuro leggero */
+  
+  transition: all 0.3s ease;
+  font-size: 1.4rem; /* Icona interna proporzionata */
 }
 
-/* Effetto Hover Social */
+/* Hover delicato */
 .contact-icons a:hover {
-  background: #4b61d1; /* Diventa blu */
-  border-color: #4b61d1;
-  color: white; /* Icona bianca */
-  transform: translateY(-8px) scale(1.05); /* Si alza e si ingrandisce */
-  /* Effetto bagliore */
-  box-shadow: 0 10px 25px rgba(75, 97, 209, 0.4);
+  background: #fff;
+  color: #4b61d1;
+  transform: scale(1.1); /* Leggero zoom */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Ombra leggera */
+  border-color: #fff;
 }
 
 
