@@ -11,8 +11,7 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Inter', sans-serif;
-  /* IMPORTANTE: Rimosso il colore di sfondo solido che copriva la mappa */
-  background-color: transparent; 
+  background-color: transparent; /* Lasciamo vedere lo sfondo */
   overflow-x: hidden;
 }
 
@@ -24,7 +23,7 @@ html, body {
   width: 100% !important;
   height: 100% !important;
   border: none;
-  z-index: -1; /* Mandata indietro */
+  z-index: -1;
 }
 
 body:not(.scrollable) {
@@ -48,7 +47,7 @@ body:not(.scrollable) {
   z-index: 10;
   width: 600px;
   max-width: 90%;
-  animation: breathe 3s infinite ease-in-out;
+  /* NESSUNA ANIMAZIONE (Rimosso breathe) */
 }
 
 .loading-logo img {
@@ -56,11 +55,6 @@ body:not(.scrollable) {
   height: auto;
   display: block;
   filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
-}
-
-@keyframes breathe {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.95; }
-  50% { transform: translate(-50%, -50%) scale(1.02); opacity: 1; }
 }
 
 /* --- POPUP HOME --- */
@@ -74,6 +68,7 @@ body:not(.scrollable) {
   justify-content: center;
   z-index: 30;
   padding: 20px;
+  /* Solo dissolvenza in uscita */
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
@@ -96,9 +91,10 @@ body:not(.scrollable) {
   text-align: left;
 }
 
+/* Titolo Popup più leggero */
 .popup-title {
   font-size: 2.2rem;
-  font-weight: 800;
+  font-weight: 600; /* Ridotto da 800 */
   text-align: center !important;
   margin-bottom: 30px;
   line-height: 1.2;
@@ -107,13 +103,12 @@ body:not(.scrollable) {
   display: block;
 }
 
-/* Testo Popup: leggermente ridotto e alleggerito anche qui per coerenza */
 .popup-content p {
   text-align: left;
   margin-bottom: 20px;
   line-height: 1.7;
-  font-size: 0.95rem; 
-  font-weight: 300;
+  font-size: 0.95rem;
+  font-weight: 300; /* Leggero */
 }
 
 .popup-content button {
@@ -132,7 +127,9 @@ body:not(.scrollable) {
 
 .popup-content button:hover {
   background: rgba(255, 255, 255, 0.9);
-  transform: scale(1.02);
+  /* Rimossa trasformazione scala per evitare "movimenti" non voluti se non piacciono */
+  transform: none; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 @media (max-width: 768px) {
@@ -198,15 +195,14 @@ body:not(.scrollable) {
 
 body.scrollable {
   overflow-y: auto;
-  /* Applichiamo lo sfondo direttamente al body */
-  background-image: url('sfondo-sfocato.jpg');
+  /* NUOVO SFONDO: mappa.png */
+  background-image: url('mappa.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
-/* Rimuoviamo eventuali pseudo-elementi che potrebbero bloccare la vista */
 body.scrollable::before {
   display: none;
 }
@@ -217,13 +213,11 @@ body.scrollable::before {
   margin: 140px auto 60px auto;
   padding: 50px;
   
-  /* GLASS EFFECT */
   background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   border-radius: 25px;
-
   text-align: left;
 }
 
@@ -234,27 +228,28 @@ body.scrollable::before {
   }
 }
 
+/* TITOLI PIÙ LEGGERI */
 .page-container h1 {
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: 500; /* Light/Medium */
   text-align: center;
   margin-bottom: 30px;
+  color: #111;
 }
 
 .page-container h2 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 500; /* Light/Medium */
   text-align: left;
   margin-top: 40px;
   margin-bottom: 20px;
+  color: #111;
 }
 
-/* --- TESTO PARAGRAFO AGGIORNATO --- */
+/* TESTO PARAGRAFI LEGGERO */
 .page-container p {
-  /* Dimensione ridotta */
-  font-size: 0.92rem; 
-  /* Più leggero (Light) */
-  font-weight: 300; 
+  font-size: 0.92rem;
+  font-weight: 300; /* Light */
   line-height: 1.7;
   margin-bottom: 20px;
   text-align: left;
@@ -266,7 +261,7 @@ body.scrollable::before {
   text-align: center !important;
 }
 
-/* --- GALLERIA (SENZA MOVIMENTO) --- */
+/* --- GALLERIA --- */
 .gallery-row {
   display: flex;
   flex-wrap: wrap;
@@ -277,18 +272,16 @@ body.scrollable::before {
 .gallery-row img,
 .page-container > img {
   width: calc(50% - 10px);
-  border-radius: 16px;
+  /* ANGOLI MENO ARROTONDATI */
+  border-radius: 6px; 
   object-fit: cover;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  /* Rimosso transition */
 }
 
-/* Rimosso hover transform, lasciato solo un leggero cambio ombra */
 .gallery-row img:hover,
 .page-container > img:hover {
   opacity: 1;
-  /* Nessun movimento, solo ombra */
-  box-shadow: 0 6px 25px rgba(0,0,0,0.15); 
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
 }
 
 @media (max-width: 768px) {
@@ -298,11 +291,11 @@ body.scrollable::before {
   }
 }
 
-/* --- SOUNDCLOUD PLAYER --- */
+/* --- SOUNDCLOUD --- */
 .soundcloud-player {
   width: 100%;
   height: 166px;
-  border-radius: 16px;
+  border-radius: 6px; /* Coerente con le foto */
   margin-top: 30px;
   display: block;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
@@ -314,7 +307,7 @@ body.scrollable::before {
   max-width: 1050px;
   height: 700px;
   border: none;
-  border-radius: 16px;
+  border-radius: 6px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
@@ -338,52 +331,45 @@ body.scrollable::before {
   }
 }
 
-/* --- NUOVO STILE CONTATTI --- */
+/* --- CONTATTI --- */
 .email {
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 600; /* Leggermente meno bold */
   text-align: center !important;
   color: #4b61d1;
-  margin-top: 15px;
+  margin-top: 10px;
   letter-spacing: -0.5px;
 }
 
 .contact-icons {
-  margin-top: 50px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
-/* ICONE SOCIAL LEGGERE E PICCOLE */
 .contact-icons a {
   background: rgba(255,255,255,0.4);
   border: 1px solid rgba(255,255,255,0.6);
-  
-  border-radius: 15px; 
-  width: 45px; /* Più piccole */
+  border-radius: 12px; 
+  width: 45px; 
   height: 45px;
-  
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  text-decoration: none !important; /* Niente sottolineatura */
+  text-decoration: none !important;
   color: #333;
-  
   transition: all 0.3s ease;
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
 }
 
 .contact-icons a:hover {
   background: #fff;
   color: #4b61d1;
-  /* Solo leggero zoom */
-  transform: scale(1.1); 
+  transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border-color: #fff;
 }
-
 
 
 
