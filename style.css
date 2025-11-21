@@ -1,3 +1,4 @@
+/* --- RESET & FONTS --- */
 {
   margin: 0;
   padding: 0;
@@ -10,11 +11,28 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Inter', sans-serif;
-  background-color: #f7f7f7;
+  /* Colore di fallback se l'immagine non carica */
+  background-color: #e0e0e0;
   overflow-x: hidden;
 }
 
-/* --- MAPPA DI SFONDO (BASE) --- */
+/* --- STILI COMUNI GLASS --- */
+/* Definiamo qui l'effetto glass per riutilizzarlo */
+.glass-effect {
+  /* Sfondo bianco molto trasparente */
+  background: rgba(255, 255, 255, 0.25);
+  /* La magia della sfocatura posteriore e saturazione */
+  backdrop-filter: blur(25px) saturate(180%);
+  /* Bordo sottile semi-trasparente */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  /* Ombra morbida */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  /* Arrotondamento angoli */
+  border-radius: 25px;
+}
+
+
+/* --- MAPPA DI SFONDO (HOME & INDEX) --- */
 .map-frame {
   position: absolute;
   top: 0;
@@ -30,10 +48,10 @@ body:not(.scrollable) {
 }
 
 /* --- LOADING PAGE (INDEX) --- */
-/* Overlay che simula lo sfondo del popup */
 .glass-overlay {
   position: fixed;
   inset: 0;
+  /* Deve matchare il background base del popup */
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.15);
   z-index: 5;
@@ -45,7 +63,7 @@ body:not(.scrollable) {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  width: 600px; /* Logo Grande */
+  width: 600px;
   max-width: 90%;
   animation: breathe 3s infinite ease-in-out;
 }
@@ -54,7 +72,7 @@ body:not(.scrollable) {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.5)); 
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
 }
 
 @keyframes breathe {
@@ -83,16 +101,19 @@ body:not(.scrollable) {
 }
 
 .popup-content {
-  background: rgba(255, 255, 255, 0.28); /* Trasparenza Glass */
+  /* Applica lo stile glass definito sopra */
+  /* Eredita le proprietà di .glass-effect */
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
+
   padding: 60px 80px;
   width: 100%;
   max-width: 750px;
   color: #111;
-  text-align: left; 
-  backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
+  text-align: left;
 }
 
 .popup-title {
@@ -107,7 +128,7 @@ body:not(.scrollable) {
 }
 
 .popup-content p {
-  text-align: left; 
+  text-align: left;
   margin-bottom: 20px;
   line-height: 1.7;
   font-size: 1.05rem;
@@ -140,7 +161,7 @@ body:not(.scrollable) {
     font-size: 1.8rem;
   }
   .loading-logo {
-    width: 85%; 
+    width: 85%;
   }
 }
 
@@ -158,6 +179,7 @@ body:not(.scrollable) {
   border-radius: 25px;
   z-index: 20;
   white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .menu a {
@@ -192,72 +214,77 @@ body:not(.scrollable) {
 
 /* --- PAGINE INTERNE (Approfondimento, Ricerca, Contatti) --- */
 
+/* Qui impostiamo lo sfondo FISSO e GIA' SFOCATO */
 body.scrollable {
   overflow-y: auto;
-}
-
-/* Sfondo sfocato per le pagine interne */
-body.scrollable::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  /* Assicurati che questa immagine sia nella stessa cartella */
-  background-image: url('map-background.png'); 
+  /* IMPORTANTE: Assicurati di avere 'sfondo-sfocato.jpg' nella cartella */
+  background-image: url('sfondo-sfocato.jpg');
   background-size: cover;
   background-position: center;
-  /* Sfocatura sfondo */
-  filter: blur(8px); 
-  z-index: -2;
+  background-attachment: fixed; /* Rende lo sfondo immobile quando scorri */
+  background-repeat: no-repeat;
 }
+
+/* Rimuoviamo il vecchio metodo con ::before che non funzionava bene */
+body.scrollable::before {
+    display: none;
+}
+
 
 .page-container {
   width: 90%;
   max-width: 800px;
   margin: 140px auto 60px auto;
-  padding: 40px;
-  
-  /* STILE GLASS (uguale al popup) */
-  background: rgba(255, 255, 255, 0.35); /* Più trasparente di prima */
+  padding: 50px; /* Un po' più di spazio interno */
+
+  /* STILE GLASS UNIFICATO (Identico al popup) */
+  background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
-  
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   border-radius: 25px;
-  text-align: left; 
+
+  text-align: left;
 }
 
 @media (max-width: 768px) {
   .page-container {
-    padding: 25px 20px;
+    padding: 30px 25px;
     margin-top: 130px;
   }
 }
 
 .page-container h1 {
-  font-size: 1.7rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 30px;
+  color: #111;
 }
 
 .page-container h2 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   text-align: left;
-  margin-top: 35px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #111;
 }
 
 .page-container p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 17px;
-  text-align: left !important; /* Default a sinistra */
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #222;
+  text-align: left; /* Default */
 }
 
-/* Classe speciale per centrare testi specifici (Contatti) */
-.center-text {
+/* --- CLASSI DI UTILITÀ --- */
+/* Usa questa classe nell'HTML per centrare i testi specifici */
+.text-center {
   text-align: center !important;
 }
+
 
 /* --- GALLERIA --- */
 .gallery-row {
@@ -270,17 +297,17 @@ body.scrollable::before {
 .gallery-row img,
 .page-container > img {
   width: calc(50% - 10px);
-  border-radius: 14px;
+  border-radius: 16px; /* Arrotondamento leggermente maggiore */
   object-fit: cover;
-  opacity: 0.95;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-  transition: 0.2s ease;
+  /* Rimosso opacity per un look più pulito */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transizione più fluida */
 }
 
 .gallery-row img:hover,
 .page-container > img:hover {
-  opacity: 1;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.22);
+  transform: translateY(-5px); /* Leggero sollevamento */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
 }
 
 @media (max-width: 768px) {
@@ -293,10 +320,11 @@ body.scrollable::before {
 /* --- SOUNDCLOUD PLAYER FIX --- */
 .soundcloud-player {
   width: 100%;
-  height: 166px; /* Altezza fissa per evitare stretch */
-  border-radius: 12px;
-  margin-top: 25px;
+  height: 166px;
+  border-radius: 16px;
+  margin-top: 30px;
   display: block;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 /* --- PDF VIEWER --- */
@@ -305,10 +333,10 @@ body.scrollable::before {
   max-width: 1050px;
   height: 700px;
   border: none;
-  border-radius: 10px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
-/* Messaggio mobile nascosto di default su PC */
 .mobile-pdf-alert {
   display: none;
   text-align: center;
@@ -316,7 +344,67 @@ body.scrollable::before {
 }
 
 .mobile-pdf-alert p {
-  text-align: center !important
+  text-align: center !important;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .pdf-viewer-container iframe {
+    display: none;
+  }
+  .mobile-pdf-alert {
+    display: block !important;
+  }
+}
+
+/* --- NUOVO STILE CONTATTI --- */
+.email {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center !important;
+  color: #4b61d1; /* Colore accento */
+  margin-top: 15px;
+  letter-spacing: -0.5px;
+}
+
+.contact-icons {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Più spazio tra le icone */
+}
+
+/* Stile delle nuove icone social */
+.contact-icons a {
+  /* Niente sfondo pieno iniziale */
+  background: transparent;
+  /* Bordo sottile ed elegante */
+  border: 2px solid rgba(255,255,255,0.5);
+  color: #222; /* Colore icona scuro */
+
+  border-radius: 20px; /* Quadrato arrotondato */
+  width: 70px; /* Grandi */
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Transizione fluida e "rimbalzante" */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  font-size: 2rem; /* Icona interna grande */
+}
+
+/* Effetto Hover Social */
+.contact-icons a:hover {
+  background: #4b61d1; /* Diventa blu */
+  border-color: #4b61d1;
+  color: white; /* Icona bianca */
+  transform: translateY(-8px) scale(1.05); /* Si alza e si ingrandisce */
+  /* Effetto bagliore */
+  box-shadow: 0 10px 25px rgba(75, 97, 209, 0.4);
+}
 
 
 
