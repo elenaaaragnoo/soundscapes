@@ -1,4 +1,4 @@
-/* --- RESET & FONTS --- */
+
 {
   margin: 0;
   padding: 0;
@@ -15,7 +15,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* --- MAPPA DI SFONDO INTERATTIVA (HOME & INDEX) --- */
 .map-frame {
   position: absolute;
   top: 0;
@@ -23,22 +22,18 @@ html, body {
   width: 100% !important;
   height: 100% !important;
   border: none;
-  /* CORRETTO: z-index positivo per poter cliccare e muovere la mappa */
   z-index: 1; 
 }
 
-/* Impedisce lo scroll del body nella home per non interferire con la mappa */
 body:not(.scrollable) {
   overflow: hidden !important;
 }
 
-/* --- LOADING PAGE (INDEX) --- */
 .glass-overlay {
   position: fixed;
   inset: 0;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.15);
-  /* Sta sopra la mappa (1) ma sotto il logo (10) */
   z-index: 5; 
 }
 
@@ -47,7 +42,6 @@ body:not(.scrollable) {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* Sta sopra l'overlay */
   z-index: 10; 
   width: 600px;
   max-width: 90%;
@@ -60,7 +54,6 @@ body:not(.scrollable) {
   filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
 }
 
-/* --- POPUP HOME --- */
 .popup {
   position: fixed;
   inset: 0;
@@ -69,7 +62,6 @@ body:not(.scrollable) {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Il popup deve stare sopra TUTTO */
   z-index: 30; 
   padding: 20px;
   transition: opacity 0.8s ease, visibility 0.8s ease;
@@ -105,7 +97,6 @@ body:not(.scrollable) {
   display: block;
 }
 
-/* Testo popup centrato come richiesto */
 .popup-content p {
   text-align: center !important;
   margin-bottom: 20px;
@@ -146,7 +137,6 @@ body:not(.scrollable) {
   }
 }
 
-/* --- MENU --- */
 .menu {
   position: fixed;
   top: 45px;
@@ -194,11 +184,9 @@ body:not(.scrollable) {
   }
 }
 
-/* --- PAGINE INTERNE (SFONDO FISSO IMMAGINE) --- */
-/* Solo le pagine interne hanno la classe .scrollable */
 body.scrollable {
   overflow-y: auto;
-  background-image: url('mappa.png'); /* Qui usa l'immagine fissa */
+  background-image: url('mappa.png'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -247,7 +235,6 @@ body.scrollable::before {
   color: #111;
 }
 
-/* Testo pagine interne: a SINISTRA */
 .page-container p {
   font-size: 0.92rem;
   font-weight: 300;
@@ -261,7 +248,6 @@ body.scrollable::before {
   text-align: center !important;
 }
 
-/* --- GALLERIA --- */
 .gallery-row {
   display: flex;
   flex-wrap: wrap;
@@ -290,7 +276,6 @@ body.scrollable::before {
   }
 }
 
-/* --- SOUNDCLOUD --- */
 .soundcloud-player {
   width: 100%;
   height: 166px;
@@ -300,7 +285,6 @@ body.scrollable::before {
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* --- PDF VIEWER --- */
 .pdf-viewer-container iframe {
   width: 100%;
   max-width: 1050px;
@@ -330,7 +314,6 @@ body.scrollable::before {
   }
 }
 
-/* --- CONTATTI --- */
 .email {
   font-size: 1.4rem;
   font-weight: 600;
@@ -369,5 +352,6 @@ body.scrollable::before {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border-color: #fff;
 }
+
 
 
