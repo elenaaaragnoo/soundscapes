@@ -10,7 +10,10 @@
 </head>
 <body class="scrollable">
 
-  <nav class="menu">
+  <nav class="menu" id="myMenu">
+    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+      <i class="fa fa-bars"></i>
+    </a>
     <a href="home.html">Home</a>
     <a href="approfondimento.html">Approfondimento</a>
     <a href="ricerca.html">Ricerca</a>
@@ -52,6 +55,17 @@
     </div>
 
   </div>
+
+  <script>
+    function toggleMenu() {
+      var x = document.getElementById("myMenu");
+      if (x.className === "menu") {
+        x.className += " responsive";
+      } else {
+        x.className = "menu";
+      }
+    }
+  </script>
 
 </body>
 </html>
