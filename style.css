@@ -14,7 +14,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* --- Mappa e Sfondo --- */
 .map-frame {
   position: absolute;
   top: 0;
@@ -50,7 +49,6 @@ body.scrollable::before {
   display: none;
 }
 
-/* --- Loading Screen --- */
 .loading-logo {
   position: fixed;
   top: 50%;
@@ -68,7 +66,6 @@ body.scrollable::before {
   filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
 }
 
-/* --- Popup Home --- */
 .popup {
   position: fixed;
   inset: 0;
@@ -152,13 +149,12 @@ body.scrollable::before {
   }
 }
 
-/* --- NUOVO SISTEMA MENU RESPONSIVE --- */
 .menu {
   position: fixed;
   top: 45px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.65); 
   backdrop-filter: blur(15px) saturate(180%);
   padding: 10px 35px;
   border-radius: 25px;
@@ -167,7 +163,7 @@ body.scrollable::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
 }
 
 .menu a {
@@ -189,62 +185,78 @@ body.scrollable::before {
   font-weight: 700;
 }
 
-/* Icona Hamburger (nascosta su desktop) */
 .menu .icon {
   display: none;
   font-size: 1.2rem;
   cursor: pointer;
-  padding: 5px;
   color: #000;
+  padding: 0;
 }
 
-/* Stili Mobile per il Menu */
 @media (max-width: 768px) {
+  
   .menu {
-    top: 20px; /* Più in alto su mobile */
-    padding: 10px 20px;
-    width: 85%; /* Larghezza fissa relativa */
-    max-width: 400px;
-    flex-direction: column; /* Elementi in colonna */
-    align-items: flex-start; /* Allinea a sinistra */
+    top: 25px; 
+    width: 50px; 
+    height: 50px;
+    padding: 0;
+    
+    border-radius: 50%; 
+    
+    justify-content: center; 
+    
+    overflow: hidden; 
   }
 
-  /* Nascondi i link di default su mobile */
-  .menu a {
+  .menu a:not(.icon) {
     display: none;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    border-top: 1px solid rgba(0,0,0,0.05);
   }
   
-  /* Mostra l'icona hamburger */
   .menu .icon {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    text-align: right; /* Icona a destra */
+    height: 100%;
+    font-size: 1.3rem;
   }
 
-  /* Quando il menu ha la classe "responsive" (aggiunta via JS) */
   .menu.responsive {
-    border-radius: 20px;
-    padding-bottom: 15px;
+    width: 85%; 
+    max-width: 350px;
+    height: auto; 
+    border-radius: 20px; 
+    padding: 20px 25px;
+    
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: stretch;
   }
 
-  .menu.responsive a {
-    display: block; /* Mostra i link */
-  }
-  
   .menu.responsive .icon {
-    margin-bottom: 5px;
+    height: auto;
+    justify-content: flex-end; 
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .menu.responsive a:not(.icon) {
+    display: block;
+    text-align: center;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    animation: fadeIn 0.3s ease forwards; 
   }
 }
 
-/* --- Page Container --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .page-container {
   width: 90%;
   max-width: 800px;
-  /* Margine superiore aumentato per evitare sovrapposizioni su mobile */
   margin: 140px auto 60px auto; 
   padding: 50px;
   
@@ -259,7 +271,6 @@ body.scrollable::before {
 @media (max-width: 768px) {
   .page-container {
     padding: 30px 20px;
-    /* Ancora più spazio sopra su mobile per il menu */
     margin-top: 100px; 
     width: 92%;
   }
@@ -299,7 +310,6 @@ body.scrollable::before {
   text-align: center !important;
 }
 
-/* --- Gallery & Media --- */
 .gallery-row {
   display: flex;
   flex-wrap: wrap;
@@ -370,7 +380,6 @@ body.scrollable::before {
   }
 }
 
-/* --- Contatti --- */
 .email {
   font-size: 1.4rem;
   font-weight: 600;
@@ -378,7 +387,7 @@ body.scrollable::before {
   color: #4b61d1;
   margin-top: 10px;
   letter-spacing: -0.5px;
-  word-break: break-all; /* Evita che la mail esca dal bordo su schermi piccoli */
+  word-break: break-all;
 }
 
 @media (max-width: 500px) {
@@ -417,5 +426,7 @@ body.scrollable::before {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border-color: #fff;
 }
+
+
 
 
