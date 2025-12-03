@@ -1,4 +1,11 @@
-document.getElementById("closePopup").addEventListener("click", () => {
-  document.getElementById("popup").classList.add("hidden");
-});
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('closePopup');
 
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            popup.classList.add('hidden');
+        });
+    }
+});
